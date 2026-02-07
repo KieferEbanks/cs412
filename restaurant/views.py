@@ -88,6 +88,19 @@ def confirmation(request):
         else:
             special_instructions = ""
 
+        # Get the selected filet sauce if one was chosen
+        if "filet_sauce" in request.POST and request.POST["filet_sauce"]:
+            filet_sauce = request.POST["filet_sauce"]
+            # Convert to a readable format
+            if filet_sauce == "peppercorn":
+                filet_sauce_display = "Peppercorn Sauce"
+            elif filet_sauce == "steak_sauce":
+                filet_sauce_display = "Steak Sauce"
+            else:
+                filet_sauce_display = filet_sauce
+        else:
+            filet_sauce_display = ""
+
 
         for item in ["Filet Mignon", "Ribeye", "Sirloin", "T-bone", "daily_special"]:
             if item in request.POST: # check if the item was ordered, otherwise it won't be in the POST data and cause an error
@@ -118,6 +131,7 @@ def confirmation(request):
             "phone": phone,
             "email": email,
             "special_instructions": special_instructions,
+            "filet_sauce": filet_sauce_display,
         }
 
     #delegate the response to the template and pass in context variables

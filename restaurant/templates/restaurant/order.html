@@ -87,5 +87,32 @@ This is the ordering page that has the form -->
 
     </form>
 
+    <script>
+        // This script is to ensure that when a Filet Mignonsauce radio button is selected, the Filet Mignon checkbox is also checked
+        // and when the Filet Mignon checkbox is unchecked, all sauce radio buttons are deselected
+        
+        // First we get references to the checkbox and radio buttons
+        var filetCheckbox = document.getElementById('filet_checkbox');
+        var sauceRadios = document.querySelectorAll('input[name="filet_sauce"]');
+        
+        // When a sauce radio button is selected, check the Filet Mignon checkbox
+        sauceRadios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    filetCheckbox.checked = true;
+                }
+            });
+        });
+        
+        // When the Filet Mignon checkbox is unchecked, deselect all sauce radio buttons
+        filetCheckbox.addEventListener('change', function() {
+            if (!this.checked) {
+                sauceRadios.forEach(function(radio) {
+                    radio.checked = false;
+                });
+            }
+        });
+    </script>
+
 {% endblock %}
 

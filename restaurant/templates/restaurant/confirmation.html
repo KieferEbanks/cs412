@@ -24,6 +24,9 @@ This is the confirmation page that displays the order details -->
             <div class="order-details">
                 <h3>Thank you for your order, {{ name }}!</h3>
                 <p>Your order of {{ ordered_items|join:", " }} has been received.</p>
+                {% if filet_sauce %}
+                <p><strong>Filet Mignon Sauce:</strong> {{ filet_sauce }}</p>
+                {% endif %}
                 <p>Total Price: ${{ total_price }}</p>
                 <p>Your food will be ready at: {{ pickup_time }}</p>
 
